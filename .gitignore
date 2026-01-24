@@ -1,0 +1,39 @@
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# Environment variables & secrets
+.env
+.env.*
+*.key
+
+# --- Vector databases & generated artifacts ---
+vectordb/
+chroma/
+*.sqlite
+*.db
+
+# --- OS junk ---
+.DS_Store
+Thumbs.db
+
+# --- IDEs ---
+.vscode/
+.idea/
+
+# --- Logs ---
+*.log
+
+# --- Temporary files ---
+*.tmp
+*.swp
