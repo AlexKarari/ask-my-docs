@@ -28,7 +28,7 @@ def retrieve_candidates(
     # .query() is a method of the ChromaDB collection class.
     # 
     res = col.query(
-        query_embeddings=[qvec], # Vector to search for - wrapped in a list because ChromaDB supports batch queries. We search for one query at a time.
+        query_embeddings=qvec, # Vector to search for - wrapped in a list because ChromaDB supports batch queries. We search for one query at a time.
         n_results=k,
         include=["documents", "metadatas", "distances"],
     )
