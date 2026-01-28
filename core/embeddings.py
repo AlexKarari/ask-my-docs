@@ -31,4 +31,4 @@ def embed_query(query: str, model: str) -> List[float]:
     Returns:
         embedding vector for the query
     """
-    return embed_texts([query], model=model[0])
+    return embed_texts([query], model=model)

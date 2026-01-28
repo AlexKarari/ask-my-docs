@@ -11,6 +11,9 @@ UI Features:
 This helps you verify the system is retrieving the right info.
 """
 
+from dotenv import load_dotenv
+load_dotenv()
+
 import json
 import os
 from pathlib import Path
