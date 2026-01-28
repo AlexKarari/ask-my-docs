@@ -64,7 +64,7 @@ with gr.Blocks(title="HealthierYou (RAG)") as demo:
 
     with gr.Row():
         with gr.Column(scale=2): # scale=2 means column takes 2/3 of the width
-            chatbot = gr.Chatbot()
+            chatbot = gr.Chatbot(type="messages")
             msg = gr.Textbox(label="Here to assist you. Ask a question")
             send = gr.Button("Send")
 
@@ -74,8 +74,13 @@ with gr.Blocks(title="HealthierYou (RAG)") as demo:
 
     def respond(user_message, chat_history):
         response, debug_text = chat_fn(user_message, chat_history)
-        chat_history = chat_history + [(user_message, response)]
-        return "", chat_history, debug_text
+        chat_history.append(
+            {"role": "user", "content": "user_message"}
+        )
+        chat_history.append(
+            {"role": "assistant", "content": "response"}
+        )
+        return chat_history, debug_text
 
     send.click(respond, inputs=[msg, chatbot], outputs=[msg, chatbot, debug_box])
     msg.submit(respond, inputs=[msg, chatbot], outputs=[msg, chatbot, debug_box])
