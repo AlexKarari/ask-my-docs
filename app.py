@@ -17,6 +17,7 @@ load_dotenv()
 import json
 import os
 from pathlib import Path
+
 import gradio as gr
 
 from core.rag_pipeline import run_rag
@@ -64,7 +65,7 @@ with gr.Blocks(title="HealthierYou (RAG)") as demo:
 
     with gr.Row():
         with gr.Column(scale=2): # scale=2 means column takes 2/3 of the width
-            chatbot = gr.Chatbot(type="messages")
+            chatbot = gr.Chatbot()
             msg = gr.Textbox(label="Here to assist you. Ask a question")
             send = gr.Button("Send")
 
@@ -73,18 +74,41 @@ with gr.Blocks(title="HealthierYou (RAG)") as demo:
                 debug_box = gr.Textbox(lines=25, label="Debug JSON")
 
     def respond(user_message, chat_history):
+        """
+        Handle user interactions and update the UI.
+        
+        This function:
+        1. Gets the response from chat_fn (which runs RAG)
+        2. Appends user message to chat history
+        3. Appends assistant response to chat history
+        4. Returns: empty string (clears input), updated history, debug info
+        """
         response, debug_text = chat_fn(user_message, chat_history)
+        
+        # Append user message
         chat_history.append(
-            {"role": "user", "content": "user_message"}
+            {"role": "user", "content": user_message}
         )
-        chat_history.append(
-            {"role": "assistant", "content": "response"}
-        )
-        return chat_history, debug_text
 
-    send.click(respond, inputs=[msg, chatbot], outputs=[msg, chatbot, debug_box])
-    msg.submit(respond, inputs=[msg, chatbot], outputs=[msg, chatbot, debug_box])
+        # Append assistant response
+        chat_history.append(
+            {"role": "assistant", "content": response}
+        )
+
+        # Return 3 values to update 3 UI components
+        return "", chat_history, debug_text
+
+    send.click(
+        respond, 
+        inputs=[msg, chatbot], 
+        outputs=[msg, chatbot, debug_box]
+    )
+    msg.submit(
+        respond, 
+        inputs=[msg, chatbot], 
+        outputs=[msg, chatbot, debug_box]
+    )
 
 
 if __name__ == "__main__":
-    demo.launch()
+    demo.launch(theme=gr.themes.Glass())
