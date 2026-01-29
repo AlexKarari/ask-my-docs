@@ -37,3 +37,7 @@ Thumbs.db
 # --- Temporary files ---
 *.tmp
 *.swp
+
+# --- Hugging Face Space clone ---
+healthieryou-rag/
+
