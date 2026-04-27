@@ -28,10 +28,10 @@ def embed_texts(texts: List[str], model: str) -> List[List[float]]:
     )
     return [item.embedding for item in resp.data]
 
-def embed_query(query: str, model: str) -> List[float]:
+def embed_query(query: str, model: str) -> List[List[float]]:
     """Embed a single query string
 
     Returns:
-        embedding vector for the query
+        a single-item list of embedding vectors, ready for ChromaDB
     """
     return embed_texts([query], model=model)

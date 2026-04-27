@@ -41,7 +41,7 @@ def retrieve_candidates(
         hits.append(
             {
                 "text": doc,
-                "source": meta.get("source", "unkown"),
+                "source": meta.get("source", "unknown"),
                 "distance": dist
             }
         )
