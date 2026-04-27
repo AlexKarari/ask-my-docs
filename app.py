@@ -21,7 +21,10 @@ from pathlib import Path
 import gradio as gr
 
 from core.rag_pipeline import run_rag
+from ingest import ingest
 
+if not os.path.exists("vectordb") or not os.listdir("vectordb"):
+    ingest()
 
 def ensure_vectordb():
     """
