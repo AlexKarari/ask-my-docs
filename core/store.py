@@ -8,7 +8,10 @@ import chromadb
 
 def get_or_create_collection(db_dir: str, collection_name: str):
     chroma = chromadb.PersistentClient(path=db_dir)
-    return chroma.get_or_create_collection(name=collection_name)
+    return chroma.get_or_create_collection(
+        name=collection_name,
+        metadata={"hnsw:space": "cosine"} 
+    )
 
 def get_collection(db_dir: str, collection_name: str):
     chroma = chromadb.PersistentClient(path=db_dir)

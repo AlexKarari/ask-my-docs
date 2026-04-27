@@ -7,6 +7,9 @@ Embeddings converts text into a list of numbers (vectors) that represent the tex
 from typing import List
 from openai import OpenAI
 
+from dotenv import load_dotenv
+load_dotenv() 
+
 client = OpenAI()
 
 def embed_texts(texts: List[str], model: str) -> List[List[float]]:
