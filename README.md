@@ -6,6 +6,8 @@ An AI-powered knowledge assistant that provides accurate, citation-backed answer
 [![Python 3.13+](https://img.shields.io/badge/python-3.13+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+Note: This application is hosted on the Hugging Face Spaces CPU Basic (Free) tier. If the app appears unavailable or displays a scheduling/runtime error, it is usually due to temporary resource allocation on the shared free infrastructure rather than an issue with the application itself. Please try again in a few minutes or refresh the page.
+
 ## project Overview
 HealthierYou RAG is an AI system that allows users to ask natural language questions over a curated knowledge base (KB) related to a bariatric and weight-loss clinic.
 
